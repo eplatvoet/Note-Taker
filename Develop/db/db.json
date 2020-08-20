@@ -1,0 +1,10 @@
+[{"title":"Test Title","text":"Test text"}]
+
+var express = require("express");
+var path = require("path");
+
+var PORT = 8080
+
+// notes route
+
+// * route (index.html)
