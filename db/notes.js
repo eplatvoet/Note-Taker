@@ -13,9 +13,18 @@ class Note {
     writeNote(note) {
         return writeFileAsync("/db.json", JSON.stringify(note))
     }
-    //getNotes(){
-        //
-    //}
+    getNotes() {
+        return this.readNotes()
+        .then((notes) => {
+            let parseNotes;
+            try {
+                parseNotes = [].concat(JSON.parse(notes))
+            } catch (error) {
+                parseNotes = []
+            }
+        return parseNotes
+        })
+    }
     //saveNotes(){
         //
     //}
