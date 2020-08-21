@@ -5,15 +5,16 @@ var express = require("express");
 var app = express();
 
 //SETTING INITIAL PORT
-var PORT = process.end.PORT || 8080;
+var PORT = process.env.PORT || 8080;
 
 // EXPRESS APP TO HANDLE DATA PARSING
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(express.static("public"));
 
 //ROUTES 
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes.js")(app);
+require("./routes/htmlRoutes")(app);
 
 //LISTENER
 app.listen(PORT, function() {
