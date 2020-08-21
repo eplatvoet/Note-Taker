@@ -25,9 +25,14 @@ class Note {
         return parseNotes
         })
     }
-    //saveNotes(){
-        //
-    //}
+    saveNotes(note) {
+        const {title, text} = note
+        const newNote = {title, text, id: uuid()}
+        return this.getNotes()
+        .then((notes) => [...notes, newNote])
+        .then((updatedNotes) => this.writeNote(updatedNotes))
+        .then(() => newNote)
+    }
     //deleteNotes(){
         //
     // }
