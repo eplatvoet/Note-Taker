@@ -1,5 +1,7 @@
 //DEPENDENCIES
 var express = require("express");
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 //SETTING UP EXPRESS
 var app = express();
@@ -13,8 +15,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //ROUTES 
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+app.use("/api", apiRoutes);
+app.use("/", htmlRoutes);
 
 //LISTENER
 app.listen(PORT, function() {
