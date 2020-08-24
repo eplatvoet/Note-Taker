@@ -23,8 +23,9 @@ router.post("/api/notes", function(req,res) {
 
 // DELETE "/api/notes/:id"
 router.delete("/api/notes/:id", function(req, res){
-    res.send('DELETE request')
-    //create a remove note & call in here
- });
+    notes.deleteNotes()
+    .then ((notes) => res.json(notes))
+    .catch((err) => res.status(500).json(err))
+});
 
 module.exports = router

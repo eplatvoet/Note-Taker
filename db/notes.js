@@ -1,6 +1,7 @@
 const fs = require("fs");
 const util = require("util");
 const uuid = require("uuid");
+const data = require("./db.json")
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -32,9 +33,11 @@ class Note {
         .then((updatedNotes) => this.writeNote(updatedNotes))
         .then(() => newNote)
     }
-    //deleteNotes(note){
-        //
-    // }
+    deleteNotes(note){
+        let id = req.params.id
+        // let deleted = data.filter((note) => note.id !== id)
+        // return this.getNotes()
+    }
 }
 
 module.exports = new Note();
