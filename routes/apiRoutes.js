@@ -1,6 +1,5 @@
 // LOAD DATA FROM DB.JSON FILE
 var notes = require("../db/notes.js");
-
 const router = require("express").Router();
 // var dbJSON = require("../db/db.json")
 

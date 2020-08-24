@@ -35,8 +35,9 @@ class Note {
     }
     deleteNotes(note){
         let id = req.params.id
-        // let deleted = data.filter((note) => note.id !== id)
-        // return this.getNotes()
+        let deleted = data.filter((note) => note.id !== id)
+        return writeFileAsync("/db.json", JSON.stringify(deleted))
+        
     }
 }
 
