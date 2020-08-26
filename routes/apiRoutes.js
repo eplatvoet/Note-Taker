@@ -1,28 +1,27 @@
 // LOAD DATA FROM DB.JSON FILE
-var notes = require("../db/notes.js");
+const notes = require("../db/notes");
 const router = require("express").Router();
-// var dbJSON = require("../db/db.json")
-
 
 
 // GET "/api/notes" - READ DB.JSON FILE
-router.get("/notes", function(req, res) {
+router.get("api/notes", (req, res) => {
     notes.getNotes()
     .then ((notes) => res.json(notes))
     .catch((err) => res.status(500).json(err))
 });
 
 // POST "/api/notes" - SAVE NOTE TO BODY, ADD NOTE TO DB. JSON FILE, & RETURN CLIENT TO A NEW NOTE
-router.post("/api/notes", function(req,res) {
-    notes.writeNotes()
+router.post("/notes", (req,res) => {
+    notes
+    .saveNotes(req.body)
     .then((notes) => res.json(notes))
-    .then(writeNote())
     .catch((err) => res.status(500).json(err))
 });
 
 // DELETE "/api/notes/:id"
-router.delete("/api/notes/:id", function(req, res){
-    notes.deleteNotes()
+router.delete("/notes/:id",(req, res) => {
+    notes
+    .deleteNotes()
     .then ((notes) => res.json(notes))
     .catch((err) => res.status(500).json(err))
 });

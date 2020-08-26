@@ -1,17 +1,17 @@
 const fs = require("fs");
 const util = require("util");
-const uuid = require("uuid");
-const data = require("./db.json")
+
+const uuid = require("uuid/v1");
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
 class Note {
     readNotes() {
-        return readFileAsync("/db.json", "utf8");
+        return readFileAsync("db/db.json", "utf8");
     }
     writeNote(note) {
-        return writeFileAsync("/db.json", JSON.stringify(note))
+        return writeFileAsync("db/db.json", JSON.stringify(note));
     }
     getNotes() {
         return this.readNotes()
@@ -27,18 +27,17 @@ class Note {
     }
     saveNotes(note) {
         const {title, text} = note
-        const newNote = {title, text, id: uuid()}
+        const newNote = { title, text, id: uuid() }
         return this.getNotes()
         .then((notes) => [...notes, newNote])
         .then((updatedNotes) => this.writeNote(updatedNotes))
         .then(() => newNote)
     }
-    deleteNotes(note){
-        let id = req.params.id
-        let deleted = data.filter((note) => note.id !== id)
-        return writeFileAsync("/db.json", JSON.stringify(deleted))
-        
-    }
+    deleteNotes(id){
+        return this.getNotes()
+            .then((notes) => notes.filter((note) => note.id !== id))
+            .then ((filteredNotes) => this.writeNote(filteredNotes));
+        }
 }
 
 module.exports = new Note();
