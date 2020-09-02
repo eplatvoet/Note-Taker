@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 
 // GET "/api/notes" - READ DB.JSON FILE
-router.get("api/notes", (req, res) => {
+router.get("/notes", (req, res) => {
     notes.getNotes()
     .then ((notes) => res.json(notes))
     .catch((err) => res.status(500).json(err))
@@ -21,8 +21,8 @@ router.post("/notes", (req,res) => {
 // DELETE "/api/notes/:id"
 router.delete("/notes/:id",(req, res) => {
     notes
-    .deleteNotes()
-    .then ((notes) => res.json(notes))
+    .deleteNotes(req.params.id)
+    .then ((notes) => res.json({ ok: true }))
     .catch((err) => res.status(500).json(err))
 });
 
