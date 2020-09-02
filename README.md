@@ -23,8 +23,8 @@ No installations required to run the website. If downloading the repository, you
 ## LINKS:  
 - https://github.com/eplatvoet/Note-Taker  
 - https://eplatvoet.github.io/Note-Taker/  
--
+- https://whats-on-my-todo-list.herokuapp.com/notes  
 
 ## SCREENSHOTS:  
-
+![screen castify](NoteTaker.gif)
 
